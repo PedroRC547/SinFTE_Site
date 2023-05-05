@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal | SinFTE</title>
+    <link rel="stylesheet" href="https:cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="../css/Dash.css">
+    <link rel="stylesheet" href="../css/Osklenpopap.css">
+    <link rel="stylesheet" href="../css/Graficos.css">
+    <link rel="stylesheet" href="../css/popapsenha.css">
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
+    <script src="../js/popapSenha.js" defer></script>
+    <script src="../js/input.js" defer></script>
+    <script src="../js/Osklenpopap.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+    <script src="../js/Graficos.js" defer></script>
+
+    <!--Início Barra lateral-->
+    <nav>
+        <div>
+            <b href="#" class="logo">
+                <img id=logo class="logo" src="../img/seta sin fte.png" />
+                <img id=logofte class="logofte" src="../img/sin[fte]-logo-positivo-rgb.png" />
+            </b>
+        </div>
+
+        <ul class="menu">
+            <li class="active">
+                <a href="dash.html">
+                    <i class='bx bxs-dashboard'></i>
+                    <span class="nav-item">Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a>
+                    <i class='bx bxs-key'></i>
+                    <span class="nav-item" id="open">Senha</span>
+                    <!--transparência de fundo ao pop-up ser aberto-->
+                    <div id="fade" class="hide"></div>
+                    <!--BLOCO DIV pop-up-->
+                    <div id="modal" class="hide">
+                        <div class="modal-header">
+                            <button id="close">X</button>
+                            <form class="popaph2 " onsubmit="alterar()">
+                                <label for="">E-mail</label>
+                                <input type="text" id="email" />
+                                <label for="">Senha Atual</label>
+                                <input type="text" id="atualPassword" />
+                                <label for="">Senha Nova</label>
+                                <input type="text" id="newPassword" />
+                                <button type="submit">alterar</button>
+                            </form>
+                        </div>
+                    </div>
+                </a>
+            </li>
+
+            <li>
+                <a href="#">
+                    <i class='bx bxs-detail'></i>
+                    <span class="nav-item">Relatórios</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="#">
+                    <i class='bx bxs-cog'></i>
+                    <span class="nav-item">Configurações</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="index.html" class="logout">
+                    <i class='bx bx-exit'></i>
+                    <span class="nav-item">Sair</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!--Início do menu principal - Cards-->
+    <main class="container">
+        <div class="box">
+            <h1>Aramis</h1>
+            </br>
+            <p>Terminais online</p>
+            <h2>63</h2>
+            </br>
+            <p>Terminais offline</p>
+            <h3>07</h3>
+        </div>
+        <div class="box">
+            <h1>Cotton</h1>
+            </br>
+            <p>Terminais online</p>
+            <h2>52</h2>
+            </br>
+            <p>Terminais offline</p>
+            <h3>03</h3>
+        </div>
+        <div class="box">
+            <h1>Intimissimi</h1>
+            </br>
+            <p>Terminais online</p>
+            <h2>72</h2>
+            </br>
+            <p>Terminais offline</p>
+            <h3>12</h3>
+        </div>
+    </main>
+
+    <!--Início da section DASHBOARD-->
+    <section id="dashboard">
+        <!--Ícones do dashboard-->
+        <div class="grafcdinamic">
+            <i class='bx bxs-file-doc' id="img"></i>
+        </div>
+        <div class="excel">
+            <i class='bx bxs-bar-chart-square' id="img2"></i>
+        </div>
+
+        <div class="h3text">
+            <h3 style="color: black;">Indicadores</h3>
+        </div>
+        <!--Lista suspensa com os filtros disponíveis-->
+        <div id="filtroDiario">
+            <select id="selecfiltro">
+                <option id="filtro" value="hoje"> HOJE</option>
+                <option id="filtro" value="estaSemana"> ESTA SEMANA</option>
+                <option id="filtro" value="semanaPassada"> SEMANA PASSADA</option>
+                <option id="filtro" value="mesPassado"> MÊS PASSADO</option>
+            </select>
+        </div>
+        <div class="botoesLaterais">
+            <h2 class="hoje">HOJE:</h2>
+            <!--Criação dos pop-ups clientes-->
+            <button id="buttonOsklen">Osklen</button> <!--Botao de abrir-->
+            <div id="Parede" class="hide"></div> <!--transparência de fundo ao pop-up ser aberto-->
+            <div id="BlocoParede" class="hide"> <!--Bloco div pop-up e o conteudo dentro!-->
+                <div class="parede-header">
+                    <button id="closex">X</button><!--botao fechar-->
+                    <h2 class="hist">historico</h2>
+                </div>
+            </div>
+            <!--Incrementar as divs abaixo assim como está a de cima-->
+            <div id="Intimissimi">
+                <h4>Intimissimi</h4>
+            </div>
+            <div id="Aramis">
+                <h4>Aramis</h4>
+            </div>
+            <div id="Cotton">
+                <h4>Cotton</h4>
+            </div>
+        </div>
+        <!--Início dos gráficos-->
+        <div class="graficoindica">
+            <canvas id="myChart" width="1500" height="800"></canvas>
+        </div>
+    </section>
+    <script type="text/javascript">
+        window.onload = (event) => {
+            Grafico("2023-05-03%2001%3A38%3A48.5366667")
+        }
+        // Acesse o elemento HTML que você deseja anexar o evento
+        var selecfiltro = document.getElementById("selecfiltro");
+
+        // Anexe um evento de clique ao elemento
+        selecfiltro.addEventListener("change", function () {
+            var valorFiltro = document.getElementById("selecfiltro").value
+
+            if (valorFiltro === "hoje") {
+                Grafico("2023-05-03%2001%3A38%3A48.5366667");
+            } else if (valorFiltro === "estaSemana") {
+                Grafico("2023-05-04%2001%3A38%3A48.5366667");
+            } else if (valorFiltro === "semanaPassada") {
+                Grafico("2023-05-05%2001%3A38%3A48.5366667");
+            } else if (valorFiltro === "mesPassado") {
+                Grafico("2023-05-06%2001%3A38%3A48.5366667");
+
+            } else {
+                Grafico("2023-05-03%2001%3A38%3A48.5366667");
+            }
+
+        }
+
+        );
+
+    </script>
+
+    <script src="../js/alterasenha.js"></script>
+
+</body>
+
+</html>
